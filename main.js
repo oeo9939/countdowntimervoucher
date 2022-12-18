@@ -5,17 +5,33 @@ const minutesInput = document.querySelector("min");
 let minutes = 45;
 
 startTimer.addEventListener("click", () => {
-        minInterval();
-        console.log(minutes);
+        minCountdown();
+        console.count(minutes);
 });
 
-function minInterval() {
-    if (!minutes) {
-        minutes = setInterval(minCountdown, 1000);
-    }
+function minInterval () {
+    setInterval(() =>{
+        minCountdown();
+        if (minutes < 0) {
+            clearInterval(minCountdown);
+        };
+    }, 1000);
+
 }
 
+// function minInterval() {
+//     if (!minutes) {
+//         minutes = setInterval(minCountdown, 1000);
+//     }
+// }
+
 function minCountdown() {
-    for (let i = 1; i < 45; i++)
-        minutes = minutes - i;
+    for (let minutesT = 1; minutesT > 0; minutesT--) {
+        minutes = minutes - minutesT;
+        minInterval();
+        // if (minutes === 0)
+        // clearInterval();
+    }
+        // minutes -= i;
+        // return minutes;
 }
